@@ -12,7 +12,7 @@ def divide(n1, n2):
         return "Error: Division by zero"
     return n1 / n2
 
-# Define operations once (outside loop)
+
 operations = {
     "+": add,
     "-": subtract,
