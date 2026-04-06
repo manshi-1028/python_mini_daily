@@ -14,6 +14,7 @@ print("guess the number game we have two levels")
 level = input("enter 'easy' or 'hard': ").lower()
 
 const = random.randint(1, 100)
+game=False
 
 if level == "easy":
     print("you have 10 guesses")
@@ -22,7 +23,10 @@ if level == "easy":
         result = check(guess, const)
         print(result)
         if result == "you have guessed the number":
+            game=True
             break
+        print(f"attempts left: {9-i}")
+
 
 elif level == "hard":
     print("you have 5 guesses")
@@ -31,4 +35,8 @@ elif level == "hard":
         result = check(guess, const)
         print(result)
         if result == "you have guessed the number":
+            game = True
             break
+        print(f"attempts left: {4-i }")
+if not game:
+    print(f"you lose, no of guesses over , the number was{const} ")
