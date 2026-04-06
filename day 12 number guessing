@@ -1,0 +1,34 @@
+import random
+
+def check(num, const):
+    if num > 100 or num < 1:
+        return "number not in range"
+    elif num == const:
+        return "you have guessed the number"
+    elif num < const:
+        return "too low"
+    else:
+        return "too high"
+
+print("guess the number game we have two levels")
+level = input("enter 'easy' or 'hard': ").lower()
+
+const = random.randint(1, 100)
+
+if level == "easy":
+    print("you have 10 guesses")
+    for i in range(10):
+        guess = int(input("take a guess: "))
+        result = check(guess, const)
+        print(result)
+        if result == "you have guessed the number":
+            break
+
+elif level == "hard":
+    print("you have 5 guesses")
+    for i in range(5):
+        guess = int(input("take a guess: "))
+        result = check(guess, const)
+        print(result)
+        if result == "you have guessed the number":
+            break
