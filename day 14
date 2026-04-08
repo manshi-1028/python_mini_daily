@@ -1,0 +1,49 @@
+import random
+from art import logo, vs
+from game_data import data
+
+score = 0
+
+def get_random_account():
+    return random.choice(data)
+
+def details(A):
+    print(f"{A['name']},{A['description']}, from {A['country']}")
+
+def compare(A, B):
+    if A['follower_count'] > B['follower_count']:
+        return "A"
+    else:
+        return "B"
+
+def game(A, B, score):
+    details(A)
+    print(vs)
+    details(B)
+
+    answer = input("enter answer A/B: ").strip().upper()
+    while answer not in ["A", "B"]:
+        print("enter valid value")
+        answer = input("enter answer A/B: ").strip().upper()
+
+    if answer == compare(A, B):
+        score += 1
+        print(f"correct answer now score is {score}")
+        return score, False
+    else:
+        print(f"wrong answer now score is {score}")
+        return score, True
+
+print(logo)
+game_over = False
+
+A = get_random_account()
+B = get_random_account()
+
+while not game_over:
+    while A == B:
+        B = get_random_account()
+
+    score, game_over = game(A, B, score)
+    A = B
+    B = get_random_account()
