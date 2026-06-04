@@ -1,4 +1,4 @@
-# 🐍 100 Days of Python
+# 🐍  Days of Python
 
 A personal journey of learning and building with Python — one day at a time.
 
