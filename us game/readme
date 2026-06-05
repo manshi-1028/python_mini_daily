@@ -16,7 +16,6 @@ us-states-game/
 ├── main.py
 ├── 50_states.csv
 ├── blank_states_img.gif
-├── states_to_learn.csv
 └── README.md
 
 
