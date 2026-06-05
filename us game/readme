@@ -1,0 +1,32 @@
+# 🇺🇸 U.S. States Game
+
+A fun Python Turtle graphics game where you guess all 50 U.S. states.
+
+Built using:
+- Python
+- Turtle Graphics
+- Pandas
+
+---
+
+## 📂 Project Structure
+
+us-states-game/
+│
+├── main.py
+├── 50_states.csv
+├── blank_states_img.gif
+├── states_to_learn.csv
+└── README.md
+
+
+---
+
+## ▶️ How to Run
+
+1. Install Python 3
+
+2. Install pandas
+
+```bash
+pip install pandas
