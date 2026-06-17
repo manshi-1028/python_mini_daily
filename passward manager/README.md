@@ -32,7 +32,7 @@ password-manager/
 Clone the repository:
 
 ```bash
-git clone https://github.com/your-username/password-manager.git
+git clone https://github.com/manshi-1028/password-manager.git
 cd password-manager
 ```
 
@@ -51,4 +51,4 @@ python main.py
 
 ## Author
 
-Sarthak
+Manshi
