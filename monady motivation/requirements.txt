@@ -1,0 +1,5 @@
+# No external dependencies required.
+# Uses Python standard library:
+# - smtplib
+# - datetime
+# - random
