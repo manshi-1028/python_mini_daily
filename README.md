@@ -1,99 +1,48 @@
-# AI Expense Tracker
+# Python Mini Daily
 
-A full-stack personal expense tracker built with **FastAPI**, **SQLAlchemy**, and **Jinja2**, with AI-powered spending insights via **Google Gemini**, live weather/news/currency widgets, and monthly PDF/CSV reporting.
+Daily practice projects from **100 Days of Code: The Complete Python Pro Bootcamp** — one mini-project per exercise, covering fundamentals through early intermediate concepts (OOP, GUIs, file handling, APIs).
 
-## Features
+## What's in here
 
-- **Auth**: register, login, logout — JWT stored in an httponly cookie, bcrypt password hashing
-- **Expense management**: add / edit / delete transactions, categories, income vs. expense, recurring transactions, monthly budgets with email alerts
-- **Dashboard**: total income/expense/balance, category pie chart, monthly trend bar chart (Chart.js), recent transactions
-- **Reports**: monthly PDF (with embedded Matplotlib charts) and CSV export, plus emailing the PDF report via SMTP
-- **AI insights**: Gemini-powered spending analysis, savings suggestions, and free-form finance Q&A
-- **External APIs**: OpenWeather (today's weather), NewsAPI (finance headlines), ExchangeRate API (currency conversion)
-- **Testing**: Pytest suite covering auth and expense CRUD, run against an isolated in-memory SQLite DB
-- **Deployment**: Dockerfile + docker-compose, GitHub Actions CI (lint + test on every push)
+Each folder is a standalone mini-project from the course. Naming isn't strictly day-numbered — some folders are tagged by day (`Day 10/`, `Day - 16/...`), others by project name only.
 
-## Tech Stack
-
-Python 3.13 · FastAPI · SQLAlchemy · SQLite · Jinja2 · Bootstrap 5 · Chart.js · Matplotlib · fpdf2 · Google Gemini API · OpenWeather API · ExchangeRate API · NewsAPI · Pytest · Docker
-
-## Folder Structure
-
-```
-AI-Expense-Tracker/
-├── app/
-│   ├── main.py                # FastAPI app entrypoint
-│   ├── core/                  # config, security, logging, shared deps
-│   ├── db/                    # SQLAlchemy engine + models
-│   ├── schemas/                # Pydantic request/response schemas
-│   ├── routers/                # auth, expenses, dashboard, reports
-│   ├── services/                # ai, email, charts, currency, news, weather, analytics
-│   ├── templates/              # Jinja2 HTML templates
-│   └── static/                 # CSS/JS assets
-├── tests/                     # Pytest suite
-├── .github/workflows/ci.yml   # CI pipeline
-├── requirements.txt
-├── .env.example
-├── Dockerfile
-├── docker-compose.yml
-└── LICENSE
-```
-
-## Installation (local)
-
-```bash
-git clone https://github.com/<your-username>/AI-Expense-Tracker.git
-cd AI-Expense-Tracker
-
-python -m venv venv
-source venv/bin/activate        # Windows: venv\Scripts\activate
-
-pip install -r requirements.txt
-
-cp .env.example .env            # then fill in SECRET_KEY and any API keys you have
-
-uvicorn app.main:app --reload
-```
-
-Visit `http://localhost:8000/register` to create an account.
-
-## API Keys
-
-All external integrations degrade gracefully if a key is missing — the app runs fine with just `SECRET_KEY` set; weather/news/currency/AI widgets simply show as unavailable.
-
-| Variable | Where to get it |
+| Project | Concepts practiced |
 |---|---|
-| `WEATHER_API_KEY` | [openweathermap.org/api](https://openweathermap.org/api) |
-| `NEWS_API_KEY` | [newsapi.org](https://newsapi.org) |
-| `EXCHANGE_RATE_API_KEY` | [exchangerate-api.com](https://www.exchangerate-api.com) |
-| `GEMINI_API_KEY` | [ai.google.dev](https://ai.google.dev) |
-| `EMAIL_ADDRESS` / `EMAIL_PASSWORD` | Gmail App Password (not your regular password) |
+| `Day 10/Calculator Project` | Functions, basic I/O |
+| `Day - 16/oop-coffee-machine-start` | OOP, class design |
+| `quiz-game-start` (Day 17) | OOP, data-driven logic |
+| `NATO-Alphabet-Project` | Dictionaries, CSV/pandas |
+| `PythonProject1` | Full Snake game — Turtle graphics, game loops |
+| `pingpong` | Turtle graphics, collision detection |
+| `turtle crossing` | Turtle graphics, timers, difficulty scaling |
+| `dynamic typing` | Typing speed test app |
+| `kanye-quotes-end` | API requests, GUI (Tkinter) |
+| `miles to km` | Unit conversion, basic GUI |
+| `passward manager` | File I/O, Tkinter, basic security concepts |
+| `Solution+-+flash-card-project-end` | OOP, pandas, spaced repetition logic |
+| `Mail+Merge+Project+Start/Mail Merge Project...` | File I/O, string templating |
+| `birthday-wisher-extrahard-start` | Scheduling logic, email/SMTP |
+| `monady motivation` | Habit tracker / API integration |
 
-## Running Tests
+> Update this table as new project folders are added — it's the fastest way for anyone (including future you) to see what each folder covers without opening it.
+
+## Running a project
 
 ```bash
-pytest -v
+cd "<project-folder>"
+python main.py
 ```
 
-## Deployment (Docker)
+Some projects need extra packages (`requests`, `pandas`, etc.) — check that folder's own imports, or install shared dependencies:
 
 ```bash
-docker compose up --build
+pip install -r requirements.txt
 ```
 
-The app will be available at `http://localhost:8000`.
+## Note on repo scope
 
-## Screenshots
-
-_Add screenshots to `/screenshots` and reference them here once you have a running instance._
-
-## Future Improvements
-
-- Recurring transaction auto-generation via a scheduled job (APScheduler/Celery)
-- Multi-currency account support (store transactions in native currency + display currency)
-- OAuth login (Google/GitHub)
-- Role-based multi-user households / shared budgets
+This repo is for course exercises and small practice projects only. Larger, production-style projects (FastAPI apps, anything with its own `app/`, `tests/`, `Dockerfile`) live in their own dedicated repos, not mixed in here.
 
 ## License
 
-MIT — see [LICENSE](LICENSE).
+MIT
