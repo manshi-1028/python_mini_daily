@@ -1,0 +1,20 @@
+body {
+    background-color: #f5f6fa;
+}
+
+.auth-page {
+    background-color: #1e1e2f;
+}
+
+.card {
+    border: none;
+    border-radius: 10px;
+}
+
+.navbar-brand {
+    font-weight: 600;
+}
+
+table td, table th {
+    vertical-align: middle;
+}

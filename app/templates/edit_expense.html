@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block title %}Edit Expense{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">Edit Transaction</h2>
+
+{% if error %}<div class="alert alert-danger">{{ error }}</div>{% endif %}
+
+<form method="post" action="/expenses/{{ expense.id }}/edit" class="card p-4" style="max-width: 500px;">
+    <div class="mb-3">
+        <label class="form-label">Title</label>
+        <input type="text" name="title" class="form-control" value="{{ expense.title }}" required>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Amount</label>
+        <input type="number" step="0.01" name="amount" class="form-control" value="{{ expense.amount }}" required>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Category</label>
+        <input type="text" name="category" class="form-control" value="{{ expense.category }}" required>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Type</label>
+        <select name="transaction_type" class="form-select">
+            <option value="expense" {% if expense.transaction_type.value == "expense" %}selected{% endif %}>Expense</option>
+            <option value="income" {% if expense.transaction_type.value == "income" %}selected{% endif %}>Income</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Notes</label>
+        <textarea name="notes" class="form-control" rows="2">{{ expense.notes or "" }}</textarea>
+    </div>
+    <div class="form-check mb-3">
+        <input type="checkbox" name="is_recurring" class="form-check-input" id="isRecurring" value="true" {% if expense.is_recurring %}checked{% endif %}>
+        <label class="form-check-label" for="isRecurring">Recurring</label>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Recurrence Interval</label>
+        <select name="recurrence_interval" class="form-select">
+            <option value="none" {% if expense.recurrence_interval.value == "none" %}selected{% endif %}>None</option>
+            <option value="weekly" {% if expense.recurrence_interval.value == "weekly" %}selected{% endif %}>Weekly</option>
+            <option value="monthly" {% if expense.recurrence_interval.value == "monthly" %}selected{% endif %}>Monthly</option>
+            <option value="yearly" {% if expense.recurrence_interval.value == "yearly" %}selected{% endif %}>Yearly</option>
+        </select>
+    </div>
+    <div class="d-flex gap-2">
+        <button type="submit" class="btn btn-primary">Update</button>
+    </div>
+</form>
+
+<form method="post" action="/expenses/{{ expense.id }}/delete" class="mt-2" style="max-width: 500px;"
+      onsubmit="return confirm('Delete this transaction?');">
+    <button type="submit" class="btn btn-outline-danger">Delete</button>
+</form>
+{% endblock %}

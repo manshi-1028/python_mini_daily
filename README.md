@@ -1,39 +1,99 @@
-# 🐍  Days of Python
+# AI Expense Tracker
 
-A personal journey of learning and building with Python — one day at a time.
+A full-stack personal expense tracker built with **FastAPI**, **SQLAlchemy**, and **Jinja2**, with AI-powered spending insights via **Google Gemini**, live weather/news/currency widgets, and monthly PDF/CSV reporting.
 
-## 📌 About
+## Features
 
-This repository tracks my progress through 100 days of Python practice. Each day includes hands-on projects, exercises, and concepts that build on each other — from beginner fundamentals to more advanced topics.
+- **Auth**: register, login, logout — JWT stored in an httponly cookie, bcrypt password hashing
+- **Expense management**: add / edit / delete transactions, categories, income vs. expense, recurring transactions, monthly budgets with email alerts
+- **Dashboard**: total income/expense/balance, category pie chart, monthly trend bar chart (Chart.js), recent transactions
+- **Reports**: monthly PDF (with embedded Matplotlib charts) and CSV export, plus emailing the PDF report via SMTP
+- **AI insights**: Gemini-powered spending analysis, savings suggestions, and free-form finance Q&A
+- **External APIs**: OpenWeather (today's weather), NewsAPI (finance headlines), ExchangeRate API (currency conversion)
+- **Testing**: Pytest suite covering auth and expense CRUD, run against an isolated in-memory SQLite DB
+- **Deployment**: Dockerfile + docker-compose, GitHub Actions CI (lint + test on every push)
 
-## 📁 Structure
+## Tech Stack
 
-Each day has its own folder containing the code and comments about what was covered.
+Python 3.13 · FastAPI · SQLAlchemy · SQLite · Jinja2 · Bootstrap 5 · Chart.js · Matplotlib · fpdf2 · Google Gemini API · OpenWeather API · ExchangeRate API · NewsAPI · Pytest · Docker
 
-## 🧠 Topics Covered
+## Folder Structure
 
-- Python basics — variables, data types, strings
-- Control flow — if/else, loops
-- Functions and scope
-- Lists, tuples, dictionaries, sets
-- Error handling
-- File I/O
-- *(and growing...)*
-
-## 🛠 How to Run
-
-Make sure you have Python 3 installed. Clone the repo and run any day's file:
-
-```bash
-git clone https://github.com/manshi-1028/100-days-of-python.git
-cd 100-days-of-python/Day-01
-python main.py
+```
+AI-Expense-Tracker/
+├── app/
+│   ├── main.py                # FastAPI app entrypoint
+│   ├── core/                  # config, security, logging, shared deps
+│   ├── db/                    # SQLAlchemy engine + models
+│   ├── schemas/                # Pydantic request/response schemas
+│   ├── routers/                # auth, expenses, dashboard, reports
+│   ├── services/                # ai, email, charts, currency, news, weather, analytics
+│   ├── templates/              # Jinja2 HTML templates
+│   └── static/                 # CSS/JS assets
+├── tests/                     # Pytest suite
+├── .github/workflows/ci.yml   # CI pipeline
+├── requirements.txt
+├── .env.example
+├── Dockerfile
+├── docker-compose.yml
+└── LICENSE
 ```
 
-## 🙌 Why I'm Doing This
+## Installation (local)
 
-To build a strong Python foundation through daily practice and real projects. This repo is my public accountability log and a growing portfolio of work.
+```bash
+git clone https://github.com/<your-username>/AI-Expense-Tracker.git
+cd AI-Expense-Tracker
 
----
+python -m venv venv
+source venv/bin/activate        # Windows: venv\Scripts\activate
 
-*Feel free to star ⭐ the repo if you find it helpful!*
+pip install -r requirements.txt
+
+cp .env.example .env            # then fill in SECRET_KEY and any API keys you have
+
+uvicorn app.main:app --reload
+```
+
+Visit `http://localhost:8000/register` to create an account.
+
+## API Keys
+
+All external integrations degrade gracefully if a key is missing — the app runs fine with just `SECRET_KEY` set; weather/news/currency/AI widgets simply show as unavailable.
+
+| Variable | Where to get it |
+|---|---|
+| `WEATHER_API_KEY` | [openweathermap.org/api](https://openweathermap.org/api) |
+| `NEWS_API_KEY` | [newsapi.org](https://newsapi.org) |
+| `EXCHANGE_RATE_API_KEY` | [exchangerate-api.com](https://www.exchangerate-api.com) |
+| `GEMINI_API_KEY` | [ai.google.dev](https://ai.google.dev) |
+| `EMAIL_ADDRESS` / `EMAIL_PASSWORD` | Gmail App Password (not your regular password) |
+
+## Running Tests
+
+```bash
+pytest -v
+```
+
+## Deployment (Docker)
+
+```bash
+docker compose up --build
+```
+
+The app will be available at `http://localhost:8000`.
+
+## Screenshots
+
+_Add screenshots to `/screenshots` and reference them here once you have a running instance._
+
+## Future Improvements
+
+- Recurring transaction auto-generation via a scheduled job (APScheduler/Celery)
+- Multi-currency account support (store transactions in native currency + display currency)
+- OAuth login (Google/GitHub)
+- Role-based multi-user households / shared budgets
+
+## License
+
+MIT — see [LICENSE](LICENSE).
